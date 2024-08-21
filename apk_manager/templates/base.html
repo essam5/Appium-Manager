@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Appium Manager{% endblock %}</title>
+</head>
+
+<body class="{% if request.session.high_contrast %}high-contrast{% endif %} {% if request.session.font_size == 'large' %}large-font{% endif %}">
+    <header>
+        <nav>
+            {% load i18n %}
+            <ul>
+                <li><a href="{% url 'app_list' %}">Home</a></li>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'app_upload' %}">{%trans "Upload App"%}</a>
+                <a href="{% url 'toggle_high_contrast' %}">{%trans "Toggle High Contrast"%}</a>
+                <a href="{% url 'increase_font_size' %}">{%trans "Increase Font Size"%}</a>
+                <a href="{% url 'decrease_font_size' %}">{%trans "Decrease Font Size"%}</a>
+                <a href="{% url 'set_language' 'fr' %}">{%trans "French"%}</a>
+                <a href="{% url 'set_language' 'en' %}">{%trans "English"%}</a>
+                <a href="{% url 'logout' %}">{%trans "Logout"%} ({{ request.user.username }})</a> {% else %}
+                <a href="{% url 'login' %}">{%trans "Login"%}</a>
+                <a href="{% url 'register' %}">{%trans "Register"%}</a> {% endif %}
+            </ul>
+
+        </nav>
+    </header>
+
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+</body>
+
+</html>

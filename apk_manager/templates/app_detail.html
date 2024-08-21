@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block title %}{{ app.name }}{% endblock %} {% block content %} {% load i18n %}
+
+<h1>{{ app.name }}</h1>
+<p>{% trans "Uploaded by" %}: {{ app.uploaded_by }}</p>
+<p>{% trans "APK File Path" %}: {{ app.apk_file_path }}</p>
+
+<h2>{% trans "Test Results" %}</h2>
+{% for test in test_runs %}
+<div>
+    <h3>{% trans "Test Run" %} {{ forloop.counter }}</h3>
+    <p>{% trans "Result" %}: {{ test.result }}</p>
+    <p>{% trans "Screen Changed" %}: {{ test.screen_changed|yesno:_('Yes,No') }}</p>
+    <p>
+        {% trans "First Screen" %}: <img src="{{ test.first_screen_screenshot_path.url }}" alt="First Screenshot"> {% trans "Second Screen" %}: <img src="{{ test.second_screen_screenshot_path.url }}" alt="Second Screenshot">
+    </p>
+    <p>{% trans "Video Recording" %}: <a href="{{ test.video_recording_path.url }}">{% trans "Download Video" %}</a></p>
+</div>
+{% endfor %}
+<form method="POST" action="{% url 'run_test' app.id %}">
+    {% csrf_token %}
+    <button type="submit">{% trans "Run Test" %}</button>
+</form>
+{% endblock %}

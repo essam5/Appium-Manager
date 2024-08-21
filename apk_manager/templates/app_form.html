@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %} {% load i18n %}
+
+<h1>{% if app %}{%trans "Edit App"%}{% else %}{%trans "Upload App" %}{% endif %}</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit">{% if app %}{%trans "Update" %}{% else %}{%trans "Upload" %}{% endif %}</button>
+</form>
+{% endblock %}

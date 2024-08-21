@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block title %}My Apps{% endblock %} {% block content %} {% load i18n %}
+<h1>{%trans "My Apps"%}</h1>
+<ul>
+    {% for app in apps %}
+    <li>
+        <a href="{% url 'app_detail' app.id %}">{{ app.name }}</a>
+        <form method="POST" action="{% url 'app_delete' app.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">{%trans "Delete"%}</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
