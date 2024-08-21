@@ -12,8 +12,8 @@
         <nav>
             {% load i18n %}
             <ul>
-                <li><a href="{% url 'app_list' %}">Home</a></li>
                 {% if request.user.is_authenticated %}
+                <li><a href="{% url 'app_list' %}">Home</a></li>
                 <a href="{% url 'app_upload' %}">{%trans "Upload App"%}</a>
                 <a href="{% url 'toggle_high_contrast' %}">{%trans "Toggle High Contrast"%}</a>
                 <a href="{% url 'increase_font_size' %}">{%trans "Increase Font Size"%}</a>
