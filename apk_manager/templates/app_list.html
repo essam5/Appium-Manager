@@ -3,7 +3,7 @@
 <ul>
     {% for app in apps %}
     <li>
-        <a href="{% url 'app_detail' app.id %}">{{ app.name }}</a>
+        <a style="color: black;" href="{% url 'app_detail' app.id %}">{{ app.name }}</a>
         <form method="POST" action="{% url 'app_delete' app.id %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit">{%trans "Delete"%}</button>

@@ -153,13 +153,14 @@ def toggle_high_contrast(request):
 @login_required
 def increase_font_size(request):
     request.session["font_size"] = "large"
-    return redirect(request.META.get("HTTP_REFERER", "/"))
+    print("font_sizewwwwwwww")
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/"))
 
 
 @login_required
 def decrease_font_size(request):
     request.session["font_size"] = "small"
-    return redirect(request.META.get("HTTP_REFERER", "/"))
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/"))
 
 
 def set_language(request, language_code):

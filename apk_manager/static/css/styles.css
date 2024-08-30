@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #e0d5d5;
+    font-size: 16px;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -30,6 +31,11 @@ header nav ul li a {
     text-decoration: none;
 }
 
+a {
+    color: white;
+    margin: 0 1em;
+}
+
 main {
     padding: 2em;
 }
@@ -42,4 +48,31 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+body.small {
+    font-size: 14px;
+    /* Small font size */
+}
+
+body.large {
+    font-size: 25px;
+    /* Large font size */
+}
+
+
+/* High contrast styles */
+
+body.high-contrast {
+    background-color: black;
+    color: yellow;
+}
+
+body.high-contrast a {
+    color: orange;
+}
+
+body.high-contrast button {
+    background-color: yellow;
+    color: black;
 }

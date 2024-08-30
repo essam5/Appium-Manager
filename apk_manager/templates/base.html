@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Appium Manager{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
-<body class="{% if request.session.high_contrast %}high-contrast{% endif %} {% if request.session.font_size == 'large' %}large-font{% endif %}">
+<body class="{% if request.session.font_size %}{{ request.session.font_size }}{% endif %} {% if request.session.high_contrast %}high-contrast{% endif %}">
     <header>
         <nav>
             {% load i18n %}
@@ -15,7 +17,14 @@
                 {% if request.user.is_authenticated %}
                 <li><a href="{% url 'app_list' %}">Home</a></li>
                 <a href="{% url 'app_upload' %}">{%trans "Upload App"%}</a>
-                <a href="{% url 'toggle_high_contrast' %}">{%trans "Toggle High Contrast"%}</a>
+                <!-- <a href="{% url 'toggle_high_contrast' %}">{%trans "Toggle High Contrast"%}</a> -->
+                <a href="{% url 'toggle_high_contrast' %}">
+                    {% if request.session.high_contrast %}
+                    {%trans "Disable High Contrast"%}
+                    {% else %}
+                    {%trans "Enable High Contrast"%}
+                    {% endif %}
+                </a>
                 <a href="{% url 'increase_font_size' %}">{%trans "Increase Font Size"%}</a>
                 <a href="{% url 'decrease_font_size' %}">{%trans "Decrease Font Size"%}</a>
                 <a href="{% url 'set_language' 'fr' %}">{%trans "French"%}</a>

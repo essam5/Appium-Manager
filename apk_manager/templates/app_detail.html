@@ -13,7 +13,7 @@
     <p>
         {% trans "First Screen" %}: <img src="{{ test.first_screen_screenshot_path.url }}" alt="First Screenshot"> {% trans "Second Screen" %}: <img src="{{ test.second_screen_screenshot_path.url }}" alt="Second Screenshot">
     </p>
-    <p>{% trans "Video Recording" %}: <a href="{{ test.video_recording_path.url }}">{% trans "Download Video" %}</a></p>
+    <p>{% trans "Video Recording" %}: <a style="color: black;" href="{{ test.video_recording_path.url }}">{% trans "Download Video" %}</a></p>
 </div>
 {% endfor %}
 <form method="POST" action="{% url 'run_test' app.id %}">
